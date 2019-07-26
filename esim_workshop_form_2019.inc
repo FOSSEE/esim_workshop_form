@@ -215,11 +215,11 @@ function esim_workshop_step2_form($form, &$form_state, $no_js_use = FALSE)
 		{
 			$form['step2_field1_fieldset']['step2_field1_question1'] = array(
 				'#markup' => '<h4>Important instructions for participants during the workshop</h4><ol>
-<li style="font-weight: 400;"><span style="font-weight: 400;">The list of tasks to do during the workshop is available in the subsequent pages. Every page will describe some activity. It may also ask you to input some text or mark a note in order for you to proceed to the next page.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">The list of tasks to do during the workshop is available in the subsequent pages. Every page will describe some activity. It may also ask you to input some text or make a note in order for you to proceed to the next page.</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Use the &lt;next page&gt;, &lt;previous page&gt; buttons to navigate between the tasks.</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">It is important for you to finish all tasks during the workshop in order to avail a certificate etc. In case if you could not finish all tasks, use the &lt;save draft&gt; button (if available) to save your progress until the current page.
 </span></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">If you come across a difficulty during the workshop, you are expected to post a question on the forums.</span>
+<li style="font-weight: 400;"><span style="font-weight: 400;">If you come across any difficulty during the workshop, you are expected to post a question on the forums.</span>
 <ol>
 <li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the workshop activity, eSim software or the PCB that will be given to you, post on </span><a href="https://forums.fossee.in/" target="_blank"><span style="font-weight: 400;">https://forums.fossee.in/</span></a></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the eSim Spoken Tutorials, post on </span><a href="https://forums.spoken-tutorial.org/" target="_blank" target="_blank"><span style="font-weight: 400;">https://forums.spoken-tutorial.org/</span></a></li>
@@ -257,11 +257,11 @@ function esim_workshop_step2_form($form, &$form_state, $no_js_use = FALSE)
 		{
 			$form['step2_field1_fieldset']['step2_field1_question1'] = array(
 				'#markup' => '<h4>Important instructions for participants during the workshop</h4><ol>
-<li style="font-weight: 400;"><span style="font-weight: 400;">The list of tasks to do during the workshop is available in the subsequent pages. Every page will describe some activity. It may also ask you to input some text or mark a note in order for you to proceed to the next page.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">The list of tasks to do during the workshop is available in the subsequent pages. Every page will describe some activity. It may also ask you to input some text or make a note in order for you to proceed to the next page.</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Use the &lt;next page&gt;, &lt;previous page&gt; buttons to navigate between the tasks.</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">It is important for you to finish all tasks during the workshop in order to avail a certificate etc. In case if you could not finish all tasks, use the &lt;save draft&gt; button (if available) to save your progress until the current page.
 </span></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">If you come across a difficulty during the workshop, you are expected to post a question on the forums.</span>
+<li style="font-weight: 400;"><span style="font-weight: 400;">If you come across any difficulty during the workshop, you are expected to post a question on the forums.</span>
 <ol>
 <li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the workshop activity, eSim software or the PCB that will be given to you, post on </span><a href="https://forums.fossee.in/" target="_blank"><span style="font-weight: 400;">https://forums.fossee.in/</span></a></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the eSim Spoken Tutorials, post on </span><a href="https://forums.spoken-tutorial.org/" target="_blank"><span style="font-weight: 400;">https://forums.spoken-tutorial.org/</span></a></li>

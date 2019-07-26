@@ -188,7 +188,7 @@ function esim_workshop_file_path()
 
 function workshop_project_file_check_valid_filename($file_name)
 {
-	if (!preg_match('/^[0-9]{4}$/', $file_name))
+	if (!preg_match('/^[0-9]{4}/', $file_name))
 		return FALSE;
 	else if (substr_count($file_name, ".") > 1)
 		return FALSE;
