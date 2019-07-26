@@ -1931,6 +1931,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		            '#type' => 'item',
 		            '#title' => t('Existing Project file'),
 		            '#markup' => l($step6_data->project_file, 'esim-workshop/download/project-file/' . $step6_data->uid),
+		            '#suffix' => '<p>Click on the link to download the project file</p>'
 		        );
 		        $form['step6_field2_fieldset']['project_file']['upload_project_file'] = array(
 		            '#type' => 'file',
@@ -2100,6 +2101,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		            '#type' => 'item',
 		            '#title' => t('Existing Project file'),
 		            '#markup' => l($step6_data->project_file, 'esim-workshop/download/project-file/' . $step6_data->uid),
+		             '#suffix' => '<p>Click on the link to download the project file</p>'
 		        );
 		        $form['step6_field2_fieldset']['project_file']['upload_project_file'] = array(
 		            '#type' => 'file',
