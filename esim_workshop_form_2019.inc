@@ -1944,7 +1944,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		        );
 		        $form['step6_field2_fieldset']['save_project_file'] = array(
 				'#type' => 'submit',
-				'#value' => 'upload your project file',
+				'#value' => 'Upload your project file',
 				'#submit' => array(
 					'esim_workshop_step6_form_upload_project_file_submit'
 				),
