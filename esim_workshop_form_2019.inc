@@ -2459,6 +2459,6 @@ function esim_workshop_step6_form_upload_project_file_submit($form, &$form_state
 function esim_workshop_step6_form_submit_finally($form, &$form_state, $no_js_use = FALSE)
 {
 	drupal_set_message(t('You have successfully completed the form.'), 'status');
-	drupal_goto('home');
+	drupal_goto('esim-workshop/form');
 }
 /*************************************** step 6 form ends ****************************/

@@ -8,7 +8,6 @@ function esim_workshop_form_menu()
 	$items = array();
 	// Form page. 
 	/***********************************************************/
-	/****************** DDQ cleat angle  ******************/
 	$items['esim-workshop/form'] = array(
 		'title' => t('eSim Workshop Form'),
 		'page callback' => 'esim_workshop_form_page',
