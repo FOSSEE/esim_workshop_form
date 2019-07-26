@@ -217,13 +217,14 @@ function esim_workshop_step2_form($form, &$form_state, $no_js_use = FALSE)
 				'#markup' => '<h4>Important instructions for participants during the workshop</h4><ol>
 <li style="font-weight: 400;"><span style="font-weight: 400;">The list of tasks to do during the workshop is available in the subsequent pages. Every page will describe some activity. It may also ask you to input some text or mark a note in order for you to proceed to the next page.</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Use the &lt;next page&gt;, &lt;previous page&gt; buttons to navigate between the tasks.</span></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">It is important for you to finish all tasks during the workshop in order to avail a certificate etc. In case if you could not finish all tasks, use the &lt;save draft&gt; button to save your progress until the current page.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">It is important for you to finish all tasks during the workshop in order to avail a certificate etc. In case if you could not finish all tasks, use the &lt;save draft&gt; button (if available) to save your progress until the current page.
+</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">If you come across a difficulty during the workshop, you are expected to post a question on the forums.</span>
 <ol>
-<li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the workshop activity, eSim software or the PCB that will be given to you, post on </span><a href="https://forums.fossee.in/"><span style="font-weight: 400;">https://forums.fossee.in/</span></a></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the eSim Spoken Tutorials, post on </span><a href="https://forums.spoken-tutorial.org/"><span style="font-weight: 400;">https://forums.spoken-tutorial.org/</span></a></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the workshop activity, eSim software or the PCB that will be given to you, post on </span><a href="https://forums.fossee.in/" target="_blank"><span style="font-weight: 400;">https://forums.fossee.in/</span></a></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the eSim Spoken Tutorials, post on </span><a href="https://forums.spoken-tutorial.org/" target="_blank" target="_blank"><span style="font-weight: 400;">https://forums.spoken-tutorial.org/</span></a></li>
 </ol></li>
-<li><span style="font-weight: 400;">It is mandatory for you to submit your project files at the end of the workshop. We may publish your submissions on our website.</span></li>
+<li><span style="font-weight: 400;">It is mandatory for you to upload your project files at the end of the workshop. We may publish your submissions on our website.</span></li>
 </ol>',
 				'#type' => 'item',
 			);
@@ -258,13 +259,14 @@ function esim_workshop_step2_form($form, &$form_state, $no_js_use = FALSE)
 				'#markup' => '<h4>Important instructions for participants during the workshop</h4><ol>
 <li style="font-weight: 400;"><span style="font-weight: 400;">The list of tasks to do during the workshop is available in the subsequent pages. Every page will describe some activity. It may also ask you to input some text or mark a note in order for you to proceed to the next page.</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Use the &lt;next page&gt;, &lt;previous page&gt; buttons to navigate between the tasks.</span></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">It is important for you to finish all tasks during the workshop in order to avail a certificate etc. In case if you could not finish all tasks, use the &lt;save draft&gt; button to save your progress until the current page.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">It is important for you to finish all tasks during the workshop in order to avail a certificate etc. In case if you could not finish all tasks, use the &lt;save draft&gt; button (if available) to save your progress until the current page.
+</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">If you come across a difficulty during the workshop, you are expected to post a question on the forums.</span>
 <ol>
-<li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the workshop activity, eSim software or the PCB that will be given to you, post on </span><a href="https://forums.fossee.in/"><span style="font-weight: 400;">https://forums.fossee.in/</span></a></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the eSim Spoken Tutorials, post on </span><a href="https://forums.spoken-tutorial.org/"><span style="font-weight: 400;">https://forums.spoken-tutorial.org/</span></a></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the workshop activity, eSim software or the PCB that will be given to you, post on </span><a href="https://forums.fossee.in/" target="_blank"><span style="font-weight: 400;">https://forums.fossee.in/</span></a></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">For questions related to the eSim Spoken Tutorials, post on </span><a href="https://forums.spoken-tutorial.org/" target="_blank"><span style="font-weight: 400;">https://forums.spoken-tutorial.org/</span></a></li>
 </ol></li>
-<li><span style="font-weight: 400;">It is mandatory for you to submit your project files at the end of the workshop. We may publish your submissions on our website.</span></li>
+<li><span style="font-weight: 400;">It is mandatory for you to upload your project files at the end of the workshop. We may publish your submissions on our website.</span></li>
 </ol>',
 				'#type' => 'item',
 			);
@@ -1934,7 +1936,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		            '#type' => 'file',
 		            '#title' => t('Upload your project file'),
 		            '#size' => 48,
-		            '#description' => t("Upload a new project file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('<span style="color:red">Allowed file extensions : ') . variable_get('workshop_project_file_extensions', '') . t('</span><br><span style="color:red">Kindly click on the submit your project file button below to save your file.</span>')
+		            '#description' => t("Upload a new project file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('<span style="color:red">Allowed file extensions : ') . variable_get('workshop_project_file_extensions', '') . t('</span><br><span style="color:red">Kindly click on the upload your project file button below to save your file.</span>')
 		        );
 		        $form['step6_field2_fieldset']['project_file']['project_file_id'] = array(
 		            '#type' => 'hidden',
@@ -1942,7 +1944,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		        );
 		        $form['step6_field2_fieldset']['save_project_file'] = array(
 				'#type' => 'submit',
-				'#value' => 'Submit your project file',
+				'#value' => 'upload your project file',
 				'#submit' => array(
 					'esim_workshop_step6_form_upload_project_file_submit'
 				),
@@ -1960,11 +1962,11 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		            '#title' => t('Upload your project file'),
 		            '#size' => 48,
 		            '#required' => TRUE,
-		            '#description' => t("Upload a new project file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('<span style="color:red">Allowed file extensions : ') . variable_get('workshop_project_file_extensions', '') . t('</span><br><span style="color:red">Kindly click on the submit your project file button below to save your file.</span>')
+		            '#description' => t("Upload a new project file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('<span style="color:red">Allowed file extensions : ') . variable_get('workshop_project_file_extensions', '') . t('</span><br><span style="color:red">Kindly click on the upload your project file button below to save your file.</span>')
 		        );
 		        $form['step6_field2_fieldset']['save_project_file'] = array(
 				'#type' => 'submit',
-				'#value' => 'Submit your project file',
+				'#value' => 'Upload your project file',
 				'#submit' => array(
 					'esim_workshop_step6_form_upload_project_file_submit'
 				),
@@ -2103,7 +2105,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		            '#type' => 'file',
 		            '#title' => t('Upload your project file'),
 		            '#size' => 48,
-		           '#description' => t("Upload a new project file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('<span style="color:red">Allowed file extensions : ') . variable_get('workshop_project_file_extensions', '') . t('</span><br><span style="color:red">Kindly click on the submit your project file button below to save your file.</span>')
+		           '#description' => t("Upload a new project file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('<span style="color:red">Allowed file extensions : ') . variable_get('workshop_project_file_extensions', '') . t('</span><br><span style="color:red">Kindly click on the upload your project file button below to save your file.</span>')
 		        );
 		        $form['step6_field2_fieldset']['project_file']['project_file_id'] = array(
 		            '#type' => 'hidden',
@@ -2129,7 +2131,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		            '#title' => t('Upload your project file'),
 		            '#size' => 48,
 		            '#required' => TRUE,
-		            '#description' => t("Upload a new project file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('<span style="color:red">Allowed file extensions : ') . variable_get('workshop_project_file_extensions', '') . t('</span><br><span style="color:red">Kindly click on the submit your project file button below to save your file.</span>')
+		            '#description' => t("Upload a new project file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('<span style="color:red">Allowed file extensions : ') . variable_get('workshop_project_file_extensions', '') . t('</span><br><span style="color:red">Kindly click on the upload your project file button below to save your file.</span>')
 		        );
 		        $form['step6_field2_fieldset']['save_project_file'] = array(
 				'#type' => 'submit',
