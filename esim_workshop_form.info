@@ -1,0 +1,6 @@
+name = eSim Workshop form
+description = Form to submit data at the end of the eSim Workshop.
+package = Webform
+version = "7.1"
+core = "7.x"
+

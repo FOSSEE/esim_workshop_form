@@ -1,0 +1,198 @@
+<?php
+global $base_url;
+/**
+ * Implements hook_menu().
+ */
+function esim_workshop_form_menu()
+{
+	$items = array();
+	// Form page. 
+	/***********************************************************/
+	/****************** DDQ cleat angle  ******************/
+	$items['esim-workshop/form'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'esim_workshop_form_page',
+		'page arguments' => array(),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	$items['esim-workshop/form/step1'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'esim_workshop_form_page',
+		'page arguments' => array(),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	$items['esim-workshop/form/step2'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array(
+			'esim_workshop_step2_form'
+		),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	$items['esim-workshop/form/step3'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array(
+			'esim_workshop_step3_form'
+		),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	$items['esim-workshop/form/step4'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array(
+			'esim_workshop_step4_form'
+		),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	$items['esim-workshop/form/step5'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array(
+			'esim_workshop_step5_form'
+		),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	$items['esim-workshop/form/step6'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array(
+			'esim_workshop_step6_form'
+		),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	$items['admin/settings/esim-workshop'] = array(
+		'title' => 'eSim Workshop Settings',
+		'description' => 'eSim Workshop Settings',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array(
+			'esim_workshop_settings_form'
+		),
+		'access arguments' => array(
+			'administer esim workshop settings'
+		),
+		'type' => MENU_NORMAL_ITEM,
+		'file' => 'settings.inc'
+	);
+	$items['esim-workshop/download/project-file'] = array(
+		'title' => 'eSim download project file',
+		'description' => 'eSim download project file',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array(
+			'esim_download_project_file'
+		),
+		'access arguments' => array(
+			'download project file'
+		),
+		'type' => MENU_NORMAL_ITEM,
+		'file' => 'download.inc'
+	);
+	// Delete the comment
+	$items['esim-workshop/delete'] = array(
+		'title' => t('eSim Workshop Form successful!'),
+		'page callback' => 'esim_workshop_delete_comment',
+		'page arguments' => array(),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	// Success page.
+	$items['esim-workshop/success'] = array(
+		'title' => t('eSim Workshop Form successful!'),
+		'page callback' => 'esim_workshop_success',
+		'page arguments' => array(),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	// Result page
+	$items['esim-workshop/form/result'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'esim_workshop_result_page',
+		'page arguments' => array(),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	$items['esim-workshop/form/result/download'] = array(
+		'title' => t('eSim Workshop Form'),
+		'page callback' => 'esim_workshop_result_generate_csv',
+		'page arguments' => array(),
+		'access arguments' => array(
+			'access esim workshop form'
+		),
+		'file' => 'esim_workshop_form_2019.inc'
+	);
+	return $items;
+}
+function esim_workshop_form_permission()
+{
+	return array(
+		"access esim workshop form" => array(
+			"title" => t("esim workshop form"),
+			"description" => t("Allows users to view esim workshop form")
+		),
+		"administer esim workshop settings" => array(
+			"title" => t("Administer eSim Workshop settings"),
+			"description" => t("Allows users to administer esim workshop settings")
+		),
+		"download project file" => array(
+			"title" => t("Download Project file"),
+			"description" => t("Allows users to download uploaded project file")
+		),
+	);
+}
+function _field_sentence_case($string)
+{
+	$string = ucwords(strtolower($string));
+	foreach (array(
+		'-',
+		'\''
+	) as $delimiter)
+	{
+		if (strpos($string, $delimiter) !== false)
+		{
+			$string = implode($delimiter, array_map('ucfirst', explode($delimiter, $string)));
+		} //strpos($string, $delimiter) !== false
+	} //array( '-', '\'' ) as $delimiter
+	return $string;
+}
+
+function esim_workshop_file_path()
+{
+	return $_SERVER['DOCUMENT_ROOT'] . base_path() . 'esim_uploads/esim_workshop_uploads/july2019/';
+}
+
+function workshop_project_file_check_valid_filename($file_name)
+{
+	if (!preg_match('/^[0-9]{4}$/', $file_name))
+		return FALSE;
+	else if (substr_count($file_name, ".") > 1)
+		return FALSE;
+	else
+		return TRUE;
+}
