@@ -6,9 +6,11 @@ function esim_workshop_form_page()
 {
 	global $user;
 	$data = '';
-	if (!$user)
+	if ($user->uid == 0)
 	{
-		$data .= "Please login to give feedback";
+		$msg = drupal_set_message(t('It is mandatory to ' . l('login', 'user') . ' on this website to access the workshop form. If you are new user please create a new account first.'), 'error');
+		drupal_goto('user');
+		return $msg;
 	} //!$user
 	/************* Check if user has already submitted a proposal **************/
 	$query = db_select('esim_workshop_2019_form_step1_feedback');
@@ -59,6 +61,13 @@ function esim_workshop_step1_form($form, &$form_state, $no_js_use = FALSE)
 {
 	global $user;
 	global $base_url;
+	if ($user->uid == 0)
+	{
+		$msg = drupal_set_message(t('It is mandatory to ' . l('login', 'user') . ' on this website to access the flowsheet proposal form. If you are new user please create a new account first.'), 'error');
+		//drupal_goto('om-flowsheet-project');
+		drupal_goto('user');
+		return $msg;
+	}
 	// All the real form fields.
 	$query = db_select('esim_workshop_2019_form_step1_feedback');
 	$query->fields('esim_workshop_2019_form_step1_feedback');
