@@ -28,7 +28,7 @@ function esim_workshop_form_menu()
 		'file' => 'esim_workshop_form_2019.inc'
 	);
 	$items['esim-workshop/form/step2'] = array(
-		'title' => t('eSim Workshop Form'),
+		'title' => t('Important Instructions for Participants'),
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array(
 			'esim_workshop_step2_form'
@@ -39,7 +39,7 @@ function esim_workshop_form_menu()
 		'file' => 'esim_workshop_form_2019.inc'
 	);
 	$items['esim-workshop/form/step3'] = array(
-		'title' => t('eSim Workshop Form'),
+		'title' => t('Schematic Creation'),
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array(
 			'esim_workshop_step3_form'
@@ -50,7 +50,7 @@ function esim_workshop_form_menu()
 		'file' => 'esim_workshop_form_2019.inc'
 	);
 	$items['esim-workshop/form/step4'] = array(
-		'title' => t('eSim Workshop Form'),
+		'title' => t('Simulation and Hardware'),
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array(
 			'esim_workshop_step4_form'
@@ -61,7 +61,7 @@ function esim_workshop_form_menu()
 		'file' => 'esim_workshop_form_2019.inc'
 	);
 	$items['esim-workshop/form/step5'] = array(
-		'title' => t('eSim Workshop Form'),
+		'title' => t('PCB designing'),
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array(
 			'esim_workshop_step5_form'
@@ -72,7 +72,7 @@ function esim_workshop_form_menu()
 		'file' => 'esim_workshop_form_2019.inc'
 	);
 	$items['esim-workshop/form/step6'] = array(
-		'title' => t('eSim Workshop Form'),
+		'title' => t('Documentation and Submission'),
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array(
 			'esim_workshop_step6_form'
@@ -189,7 +189,7 @@ function esim_workshop_file_path()
 
 function workshop_project_file_check_valid_filename($file_name)
 {
-	if (!preg_match('/^[0-9]{4}$/', $file_name))
+	if (!preg_match('/^[0-9]{4}/', $file_name))
 		return FALSE;
 	else if (substr_count($file_name, ".") > 1)
 		return FALSE;

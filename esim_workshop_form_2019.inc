@@ -420,6 +420,12 @@ Create a circuit schematic of an ‘Astable Multivibrator’ as shown in Figure 
 	            '#required' => TRUE,
 	            '#default_value' => $step3_data->step3_checkbox_status,
         	);
+        	$form['step3_field1_fieldset']['step3_checkbox_status_1'] = array(
+				'#type' => 'checkbox',
+	            '#title' => t('I have carefully chosen components only from eSim_Devices, eSim_Sources and eSim_Plot category during component selection'),
+	            '#required' => TRUE,
+	            '#default_value' => $step3_data->step3_checkbox_status_1,
+        	);
   			$form["step3_page_id"] = array(
 				"#type" => "hidden",
 				"#value" => "step3"
@@ -450,6 +456,11 @@ Create a circuit schematic of an ‘Astable Multivibrator’ as shown in Figure 
 			$form['step3_field1_fieldset']['step3_checkbox_status'] = array(
 				'#type' => 'checkbox',
 	            '#title' => t('I could successfully create the circuit schematic'),
+	            '#required' => TRUE,
+        	);
+        	$form['step3_field1_fieldset']['step3_checkbox_status_1'] = array(
+				'#type' => 'checkbox',
+	            '#title' => t('I have carefully chosen components only from eSim_Devices, eSim_Sources and eSim_Plot category during component selection'),
 	            '#required' => TRUE,
         	);
 			$form["step3_page_id"] = array(
@@ -484,13 +495,11 @@ function esim_workshop_step3_form_previous_submit($form, &$form_state, $no_js_us
 	$form_step3_data = $query->execute()->fetchObject();
 	if ($form_step3_data)
 	{
-		if ($form_state['values']['step3_field1_fieldset']['step3_checkbox_status'] == 1){
-			$step3_checkbox_status = 1;
-		}
-		$query = "UPDATE esim_workshop_2019_form_step3_feedback SET step3_checkbox_status=:step3_checkbox_status, data_relation=:data_relation WHERE uid=:uid ";
+		$query = "UPDATE esim_workshop_2019_form_step3_feedback SET step3_checkbox_status=:step3_checkbox_status, step3_checkbox_status_1=:step3_checkbox_status_1, data_relation=:data_relation WHERE uid=:uid ";
 		$args = array(
 			":uid" => $user->uid,
-			":step3_checkbox_status" => $step3_checkbox_status,
+			":step3_checkbox_status" => $v['step3_field1_fieldset']['step3_checkbox_status'],
+			":step3_checkbox_status_1" => $v['step3_field1_fieldset']['step3_checkbox_status_1'],
 			":data_relation" => "step3"
 		);
 		/* storing the row id in $result */
@@ -503,10 +512,11 @@ function esim_workshop_step3_form_previous_submit($form, &$form_state, $no_js_us
 		if ($form_state['values']['step3_field1_fieldset']['step3_checkbox_status'] == 1){
 			$step3_checkbox_status = 1;
 		}
-		$query = "INSERT INTO {esim_workshop_2019_form_step3_feedback} (uid, step3_checkbox_status, data_relation,inserted_on) VALUES (:uid,:step3_checkbox_status, :data_relation,:inserted_on)";
+		$query = "INSERT INTO {esim_workshop_2019_form_step3_feedback} (uid, step3_checkbox_status,step3_checkbox_status_1, data_relation,inserted_on) VALUES (:uid,:step3_checkbox_status,s:step3_checkbox_status_1, :data_relation,:inserted_on)";
 		$args = array(
 			":uid" => $user->uid,
-			":step3_checkbox_status" => $step3_checkbox_status,
+			":step3_checkbox_status" => $v['step3_field1_fieldset']['step3_checkbox_status'],
+			":step3_checkbox_status_1" => $v['step3_field1_fieldset']['step3_checkbox_status_1'],
 			":data_relation" => "step3",
 			":inserted_on" => date('Y-m-d')
 		);
@@ -527,13 +537,11 @@ function esim_workshop_step3_form_next_submit($form, &$form_state, $no_js_use = 
 	$form_step3_data = $query->execute()->fetchObject();
 	if ($form_step3_data)
 	{
-		if ($form_state['values']['step3_field1_fieldset']['step3_checkbox_status'] == 1){
-			$step3_checkbox_status = 1;
-		}
-		$query = "UPDATE esim_workshop_2019_form_step3_feedback SET step3_checkbox_status=:step3_checkbox_status, data_relation=:data_relation WHERE uid=:uid ";
+		$query = "UPDATE esim_workshop_2019_form_step3_feedback SET step3_checkbox_status=:step3_checkbox_status, step3_checkbox_status_1=:step3_checkbox_status_1, data_relation=:data_relation WHERE uid=:uid ";
 		$args = array(
 			":uid" => $user->uid,
-			":step3_checkbox_status" => $step3_checkbox_status,
+			":step3_checkbox_status" => $v['step3_field1_fieldset']['step3_checkbox_status'],
+			":step3_checkbox_status_1" => $v['step3_field1_fieldset']['step3_checkbox_status_1'],
 			":data_relation" => "step3"
 		);
 		/* storing the row id in $result */
@@ -543,13 +551,11 @@ function esim_workshop_step3_form_next_submit($form, &$form_state, $no_js_use = 
 	} //$form_step3_data
 	else
 	{
-		if ($form_state['values']['step3_field1_fieldset']['step3_checkbox_status'] == 1){
-			$step3_checkbox_status = 1;
-		}
-		$query = "INSERT INTO {esim_workshop_2019_form_step3_feedback} (uid, step3_checkbox_status, data_relation,inserted_on) VALUES (:uid,:step3_checkbox_status, :data_relation,:inserted_on)";
+		$query = "INSERT INTO {esim_workshop_2019_form_step3_feedback} (uid, step3_checkbox_status,step3_checkbox_status_1, data_relation,inserted_on) VALUES (:uid,:step3_checkbox_status,s:step3_checkbox_status_1, :data_relation,:inserted_on)";
 		$args = array(
 			":uid" => $user->uid,
-			":step3_checkbox_status" => $step3_checkbox_status,
+			":step3_checkbox_status" => $v['step3_field1_fieldset']['step3_checkbox_status'],
+			":step3_checkbox_status_1" => $v['step3_field1_fieldset']['step3_checkbox_status_1'],
 			":data_relation" => "step3",
 			":inserted_on" => date('Y-m-d')
 		);
@@ -609,77 +615,77 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 		  	$form['step4_field1_fieldset']['observation_table_header_1'] = array(
 				'#type' => 'item',
 				'#prefix' => '<table><tr><td colspan="2">',
-				'#markup' => '<p>Resistor Values</p>',
+				'#markup' => '<strong><p>Resistor Values</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_header_2'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td colspan="2">',
-				'#markup' => '<p>Physical observation over PCB</p>',
+				'#markup' => '<strong><p>Physical observation over PCB</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_header_3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td colspan="2">',
-				'#markup' => '<p>Simulation results using eSim</p>',
+				'#markup' => '<strong><p>Simulation results using eSim</p></strong>',
 				'#suffix' => '</td></tr><tr>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_1'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>R3</p>',
+				'#markup' => '<strong><p>R3</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_2'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>R4</p>',
+				'#markup' => '<strong><p>R4</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>Number of times LED1 blinks in 12 seconds</p>',
+				'#markup' => '<strong><p>Number of times LED1 blinks in 12 seconds</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>Number of times LED2 blinks in 12 seconds</p>',
+				'#markup' => '<strong><p>Number of times LED2 blinks in 12 seconds</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_5'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>Number of positive peaks across LED1 in 12 seconds</p>',
+				'#markup' => '<strong><p>Number of positive peaks across LED1 in 12 seconds</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_6'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>Number of positive peaks across LED2 in 12 seconds</p>',
+				'#markup' => '<strong><p>Number of positive peaks across LED2 in 12 seconds</p></strong>',
 				'#suffix' => '</td></tr><tr>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row1_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>68K</p>',
+				'#markup' => '<strong><p>68K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row1_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>68K</p>',
+				'#markup' => '<strong><p>68K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -714,14 +720,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row2_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>150K</p>',
+				'#markup' => '<strong><p>150K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row2_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>150K</p>',
+				'#markup' => '<strong><p>150K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -756,14 +762,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row3_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>33K</p>',
+				'#markup' => '<strong><p>33K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row3_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>33K</p>',
+				'#markup' => '<strong><p>33K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -798,14 +804,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row4_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>101K</p>',
+				'#markup' => '<strong><p>101K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row4_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>33K</p>',
+				'#markup' => '<strong><p>33K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -840,14 +846,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row5_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>183K</p>',
+				'#markup' => '<strong><p>183K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row5_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>218K</p>',
+				'#markup' => '<strong><p>218K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -882,14 +888,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row6_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>218K</p>',
+				'#markup' => '<strong><p>218K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row6_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>101K</p>',
+				'#markup' => '<strong><p>101K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -981,77 +987,77 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_header_1'] = array(
 				'#type' => 'item',
 				'#prefix' => '<table><tr><td colspan="2">',
-				'#markup' => '<p>Resistor Values</p>',
+				'#markup' => '<strong><p>Resistor Values</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_header_2'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td colspan="2">',
-				'#markup' => '<p>Physical observation over PCB</p>',
+				'#markup' => '<strong><p>Physical observation over PCB</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_header_3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td colspan="2">',
-				'#markup' => '<p>Simulation results using eSim</p>',
+				'#markup' => '<strong><p>Simulation results using eSim</p></strong>',
 				'#suffix' => '</td></tr><tr>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_1'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>R3</p>',
+				'#markup' => '<strong><p>R3</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_2'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>R4</p>',
+				'#markup' => '<strong><p>R4</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>Number of times LED1 blinks in 12 seconds</p>',
+				'#markup' => '<strong><p>Number of times LED1 blinks in 12 seconds</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>Number of times LED2 blinks in 12 seconds</p>',
+				'#markup' => '<strong><p>Number of times LED2 blinks in 12 seconds</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_5'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>Number of positive peaks across LED1 in 12 seconds</p>',
+				'#markup' => '<strong><p>Number of positive peaks across LED1 in 12 seconds</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_sub_header_6'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>Number of positive peaks across LED2 in 12 seconds</p>',
+				'#markup' => '<strong><p>Number of positive peaks across LED2 in 12 seconds</p></strong>',
 				'#suffix' => '</td></tr><tr>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row1_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>68K</p>',
+				'#markup' => '<strong><p>68K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row1_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>68K</p>',
+				'#markup' => '<strong><p>68K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -1086,14 +1092,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row2_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>150K</p>',
+				'#markup' => '<strong><p>150K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row2_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>150K</p>',
+				'#markup' => '<strong><p>150K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -1128,14 +1134,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row3_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>33K</p>',
+				'#markup' => '<strong><p>33K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row3_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>33K</p>',
+				'#markup' => '<strong><p>33K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -1170,14 +1176,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row4_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>101K</p>',
+				'#markup' => '<strong><p>101K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row4_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>33K</p>',
+				'#markup' => '<strong><p>33K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -1212,14 +1218,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row5_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>183K</p>',
+				'#markup' => '<strong><p>183K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row5_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>218K</p>',
+				'#markup' => '<strong><p>218K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -1254,14 +1260,14 @@ function esim_workshop_step4_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step4_field1_fieldset']['observation_table_reading_row6_r3'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>218K</p>',
+				'#markup' => '<strong><p>218K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
 			$form['step4_field1_fieldset']['observation_table_reading_row6_r4'] = array(
 				'#type' => 'item',
 				'#prefix' => '<td>',
-				'#markup' => '<p>101K</p>',
+				'#markup' => '<strong><p>101K</p></strong>',
 				'#suffix' => '</td>',
 
 			);
@@ -1615,10 +1621,6 @@ function esim_workshop_step5_form($form, &$form_state, $no_js_use = FALSE)
 	global $base_url;
 	global $user;
 	$img_path = $base_url . '/' . drupal_get_path("module", "esim_workshop_form") . '/images';
-	$step5_options = array(
-		'Yes' => 'Yes',
-		'No' => 'No'
-	);
 	$form = array();
 	$form['step5_field1_fieldset'] = array(
 		'#type' => 'fieldset',
@@ -1648,7 +1650,6 @@ function esim_workshop_step5_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step5_field1_fieldset']['step5_checkbox_status_2'] = array(
 				'#type' => 'checkbox',
 	            '#title' => t('I could successfully generate the gerber files'),
-	            '#required' => TRUE,
 	            '#default_value' => $step5_data->step5_checkbox_status_2,
         	);
   			$form["step5_page_id"] = array(
@@ -1685,8 +1686,7 @@ function esim_workshop_step5_form($form, &$form_state, $no_js_use = FALSE)
 			$form['step5_field1_fieldset']['step5_checkbox_status_2'] = array(
 				'#type' => 'checkbox',
 	            '#title' => t('I could successfully generate the gerber files'),
-	            '#required' => TRUE,
-	      	);
+	          );
 			$form["step5_page_id"] = array(
 				"#type" => "hidden",
 				"#value" => "step5"
@@ -1719,17 +1719,11 @@ function esim_workshop_step5_form_previous_submit($form, &$form_state, $no_js_us
 	$form_step5_data = $query->execute()->fetchObject();
 	if ($form_step5_data)
 	{
-		if ($form_state['values']['step5_field1_fieldset']['step5_checkbox_status_1'] == 1){
-			$step5_checkbox_status_1 = 1;
-		
-		if ($form_state['values']['step5_field1_fieldset']['step5_checkbox_status_2'] == 1)
-			$step5_checkbox_status_2 = 1;
-		}
 		$query = "UPDATE esim_workshop_2019_form_step5_feedback SET step5_checkbox_status_1=:step5_checkbox_status_1, step5_checkbox_status_2=:step5_checkbox_status_2, data_relation=:data_relation WHERE uid=:uid ";
 		$args = array(
 			":uid" => $user->uid,
-			":step5_checkbox_status_1" => $step5_checkbox_status_1,
-			":step5_checkbox_status_2" => $step5_checkbox_status_2,
+			":step5_checkbox_status_1" => $v['step5_field1_fieldset']['step5_checkbox_status_1'],
+			":step5_checkbox_status_2" => $v['step5_field1_fieldset']['step5_checkbox_status_2'],
 			":data_relation" => "step5"
 		);
 		/* storing the row id in $result */
@@ -1739,17 +1733,11 @@ function esim_workshop_step5_form_previous_submit($form, &$form_state, $no_js_us
 	} //$form_step5_data
 	else
 	{
-		if ($form_state['values']['step5_field1_fieldset']['step5_checkbox_status_1'] == 1){
-			$step5_checkbox_status_1 = 1;
-		
-		if ($form_state['values']['step5_field1_fieldset']['step5_checkbox_status_2'] == 1)
-			$step5_checkbox_status_2 = 1;
-		}
 		$query = "INSERT INTO {esim_workshop_2019_form_step5_feedback} (uid, step5_checkbox_status_1, step5_checkbox_status_2, data_relation,inserted_on) VALUES (:uid,:step5_checkbox_status_1, :step5_checkbox_status_2, :data_relation,:inserted_on)";
 		$args = array(
 			":uid" => $user->uid,
-			":step5_checkbox_status_1" => $step5_checkbox_status_1,
-			":step5_checkbox_status_2" => $step5_checkbox_status_2,
+			":step5_checkbox_status_1" => $v['step5_field1_fieldset']['step5_checkbox_status_1'],
+			":step5_checkbox_status_2" => $v['step5_field1_fieldset']['step5_checkbox_status_2'],
 			":data_relation" => "step5",
 			":inserted_on" => date('Y-m-d')
 		);
@@ -1770,17 +1758,11 @@ function esim_workshop_step5_form_next_submit($form, &$form_state, $no_js_use = 
 	$form_step5_data = $query->execute()->fetchObject();
 	if ($form_step5_data)
 	{
-		if ($form_state['values']['step5_field1_fieldset']['step5_checkbox_status_1'] == 1){
-			$step5_checkbox_status_1 = 1;
-		
-		if ($form_state['values']['step5_field1_fieldset']['step5_checkbox_status_2'] == 1)
-			$step5_checkbox_status_2 = 1;
-		}
 		$query = "UPDATE esim_workshop_2019_form_step5_feedback SET step5_checkbox_status_1=:step5_checkbox_status_1,step5_checkbox_status_2=:step5_checkbox_status_2, data_relation=:data_relation WHERE uid=:uid ";
 		$args = array(
 			":uid" => $user->uid,
-			":step5_checkbox_status_1" => $step5_checkbox_status_1,
-			":step5_checkbox_status_2" => $step5_checkbox_status_2,
+			":step5_checkbox_status_1" => $v['step5_field1_fieldset']['step5_checkbox_status_1'],
+			":step5_checkbox_status_2" => $v['step5_field1_fieldset']['step5_checkbox_status_2'],
 			":data_relation" => "step5"
 		);
 		/* storing the row id in $result */
@@ -1790,17 +1772,11 @@ function esim_workshop_step5_form_next_submit($form, &$form_state, $no_js_use = 
 	} //$form_step5_data
 	else
 	{
-		if ($form_state['values']['step5_field1_fieldset']['step5_checkbox_status_1'] == 1){
-			$step5_checkbox_status_1 = 1;
-		
-		if ($form_state['values']['step5_field1_fieldset']['step5_checkbox_status_2'] == 1)
-			$step5_checkbox_status_2 = 1;
-		}
 		$query = "INSERT INTO {esim_workshop_2019_form_step5_feedback} (uid, step5_checkbox_status_1,step5_checkbox_status_2, data_relation,inserted_on) VALUES (:uid,:step5_checkbox_status_1,:step5_checkbox_status_2 ,:data_relation,:inserted_on)";
 		$args = array(
 			":uid" => $user->uid,
-			":step5_checkbox_status_1" => $step5_checkbox_status_1,
-			":step5_checkbox_status_2" => $step5_checkbox_status_2,
+			":step5_checkbox_status_1" => $v['step5_field1_fieldset']['step5_checkbox_status_1'],
+			":step5_checkbox_status_2" => $v['step5_field1_fieldset']['step5_checkbox_status_2'],
 			":data_relation" => "step5",
 			":inserted_on" => date('Y-m-d')
 		);
@@ -1820,18 +1796,19 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 	global $user;
 	$img_path = $base_url . '/' . drupal_get_path("module", "esim_workshop_form") . '/images';
 	$form = array();
-	$form['step6_field1_fieldset'] = array(
-		'#type' => 'fieldset',
-		'#tree' => TRUE,
-		'#prefix' => '<div id="step6-field1-fieldset-wrapper">',
-		'#suffix' => '</div>'
-	);
 	$form['step6_field2_fieldset'] = array(
 		'#type' => 'fieldset',
 		'#tree' => TRUE,
 		'#prefix' => '<div id="step6-field2-fieldset-wrapper">',
 		'#suffix' => '</div>'
 	);
+	$form['step6_field1_fieldset'] = array(
+		'#type' => 'fieldset',
+		'#tree' => TRUE,
+		'#prefix' => '<div id="step6-field1-fieldset-wrapper">',
+		'#suffix' => '</div>'
+	);
+	
 	$query = db_select('esim_workshop_2019_form_step6_feedback');
 	$query->fields('esim_workshop_2019_form_step6_feedback');
 	$query->condition('uid', $user->uid);
@@ -1843,7 +1820,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 			$project_file = 	$step6_data->project_file;
 			$project_file_id = $step6_data->id;
 			$form['step6_field1_fieldset']['step6_field1_question1'] = array(
-				'#markup' => '<h4><strong>Task 5: Documentation of your work</strong></h4>
+				'#markup' => '<h4><strong>Task 6: Documentation of your work</strong></h4>
 <span style="font-weight: 400;">You need to answer the following questions. They will help you think more about circuit designing.</span>',
 				'#type' => 'item',
 			);
@@ -1946,7 +1923,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		    {
 		    	$form['step6_field2_fieldset']['intro_para'] = array(
 		    		'#type'=> 'item',
-		    		'#markup' => t('Compress your project folder in ZIP format. Rename the compressed zip file to your RC number. For example, 2345.zip. Upload the zip file by clicking on the upload button below.'),
+		    		'#markup' => t('<h4><strong>Task 5: Uploading your project files</strong></h4>Compress your project folder in ZIP format. Rename the compressed zip file to your RC number. For example, 2345.zip. Upload the zip file by clicking on the upload button below.'),
 		    	);
 		        $form['step6_field2_fieldset']['project_file']['existing'] = array(
 		            '#type' => 'item',
@@ -1976,7 +1953,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		      {
 		      	$form['step6_field2_fieldset']['intro_para'] = array(
 		    		'#type'=> 'item',
-		    		'#markup' => t('Compress your project folder in ZIP format. Rename the compressed zip file to your RC number. For example, 2345.zip. Upload the zip file by clicking on the upload button below.'),
+		    		'#markup' => t('<h4><strong>Task 5: Uploading your project files</strong></h4>Compress your project folder in ZIP format. Rename the compressed zip file to your RC number. For example, 2345.zip. Upload the zip file by clicking on the upload button below.'),
 		    	);
 		        $form['step6_field2_fieldset']['project_file']['upload_project_file'] = array(
 		            '#type' => 'file',
@@ -2005,18 +1982,25 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 					'esim_workshop_step6_form_previous_submit'
 				)
 			);
-			$form['next2'] = array(
+			$form['step6_field1_fieldset']['next2'] = array(
 				'#type' => 'submit',
 				'#value' => 'Save',
 				'#submit' => array(
 					'esim_workshop_step6_form_next_submit'
 				)
 			);
+			$form['submit_and_finish'] = array(
+				'#type' => 'submit',
+				'#value' => 'Submit and fInish',
+				'#submit' => array(
+					'esim_workshop_step6_form_submit_finally'
+				)
+			);
 		} //$step6_data = $form_step6_data->fetchObject()
 		else
 		{
 			$form['step6_field1_fieldset']['step6_field1_question1'] = array(
-				'#markup' => '<h4><strong>Task 5: Documentation of your work</strong></h4>
+				'#markup' => '<h4><strong>Task 6: Documentation of your work</strong></h4>
 <span style="font-weight: 400;">You need to answer the following questions. They will help you think more about circuit designing.</span>',
 				'#type' => 'item',
 			);
@@ -2108,7 +2092,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		    {
 		    	$form['step6_field2_fieldset']['intro_para'] = array(
 		    		'#type'=> 'item',
-		    		'#markup' => t('Compress your project folder in ZIP format. Rename the compressed zip file to your RC number. For example, 2345.zip. Upload the zip file by clicking on the upload button below.'),
+		    		'#markup' => t('<h4><strong>Task 5: Uploading your project files</strong></h4>Compress your project folder in ZIP format. Rename the compressed zip file to your RC number. For example, 2345.zip. Upload the zip file by clicking on the upload button below.'),
 		    	);
 		        $form['step6_field2_fieldset']['project_file']['existing'] = array(
 		            '#type' => 'item',
@@ -2127,7 +2111,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		        );
 		        $form['step6_field2_fieldset']['save_project_file'] = array(
 				'#type' => 'submit',
-				'#value' => 'Submit your project file',
+				'#value' => 'Upload your project file',
 				'#submit' => array(
 					'esim_workshop_step6_form_upload_project_file_submit'
 				),
@@ -2138,7 +2122,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		      {
 		      	$form['step6_field2_fieldset']['intro_para'] = array(
 		    		'#type'=> 'item',
-		    		'#markup' => t('Compress your project folder in ZIP format. Rename the compressed zip file to your RC number. For example, 2345.zip. Upload the zip file by clicking on the upload button below.'),
+		    		'#markup' => t('<h4><strong>Task 5: Uploading your project files</strong></h4>Compress your project folder in ZIP format. Rename the compressed zip file to your RC number. For example, 2345.zip. Upload the zip file by clicking on the upload button below.'),
 		    	);
 		        $form['step6_field2_fieldset']['project_file']['upload_project_file'] = array(
 		            '#type' => 'file',
@@ -2149,7 +2133,7 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 		        );
 		        $form['step6_field2_fieldset']['save_project_file'] = array(
 				'#type' => 'submit',
-				'#value' => 'Submit your project file',
+				'#value' => 'Upload your project file',
 				'#submit' => array(
 					'esim_workshop_step6_form_upload_project_file_submit'
 				),
@@ -2167,21 +2151,23 @@ function esim_workshop_step6_form($form, &$form_state, $no_js_use = FALSE)
 					'esim_workshop_step6_form_previous_submit'
 				)
 			);
-			$form['next2'] = array(
+			$form['step6_field1_fieldset']['next2'] = array(
 				'#type' => 'submit',
 				'#value' => 'Save',
 				'#submit' => array(
 					'esim_workshop_step6_form_next_submit'
 				)
 			);
+			$form['submit_and_finish'] = array(
+				'#type' => 'submit',
+				'#value' => 'Submit and fInish',
+				'#submit' => array(
+					'esim_workshop_step6_form_submit_finally'
+				)
+			);
 		} //$step6_data = $form_step6_data->fetchObject()
 	} //$form_step6_data
 	return $form;
-}
-function esim_workshop_step6_form_upload_project_file_validate($form, &$form_state)
-{
-   
-    return;
 }
 function esim_workshop_step6_form_previous_submit($form, &$form_state, $no_js_use = FALSE)
 {
@@ -2415,6 +2401,18 @@ function esim_workshop_step6_form_upload_project_file_submit($form, &$form_state
       {
         if ($file_name)
           {
+          	$allowed_extensions_str = variable_get('workshop_project_file_extensions', '');
+			$allowed_extensions = explode(',', $allowed_extensions_str);
+			$fnames = explode('.', strtolower($_FILES['files']['name'][$file_form_name]));
+			$temp_extension = end($fnames);
+			if (!in_array($temp_extension, $allowed_extensions))
+			{
+				form_set_error('project_file', t('Only file with ' . $allowed_extensions_str . ' extensions can be uploaded.'));
+			}
+			elseif (!workshop_project_file_check_valid_filename($_FILES['files']['name'][$file_form_name])) {
+					form_set_error('project_file', t('Invalid file name specified. The file name should be your RC number. For example, 2345.zip.'));
+			}
+			else{
 		if (file_exists($root_path . $dest_path . $_FILES['files']['name'][$file_form_name]))
             {
             	move_uploaded_file($_FILES['files']['tmp_name'][$file_form_name], $root_path . $dest_path . '/' . $_FILES['files']['name'][$file_form_name]);
@@ -2448,11 +2446,17 @@ function esim_workshop_step6_form_upload_project_file_submit($form, &$form_state
             {
             	drupal_set_message('Error uploading file : ' . $dest_path . '/' . $file_name, 'error');
             }
-	}
+        
 	drupal_set_message(t('You have successfully saved your project file. You can resubmit/modify your project file at anytime.'), 'status');
 	drupal_goto('esim-workshop/form/step6/' . $user->uid);
+	}
 }
 }
-
+	}
+}
+function esim_workshop_step6_form_submit_finally($form, &$form_state, $no_js_use = FALSE)
+{
+	drupal_set_message(t('You have successfully completed the form.'), 'status');
+	drupal_goto('home');
 }
 /*************************************** step 6 form ends ****************************/
