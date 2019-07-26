@@ -17,7 +17,7 @@ function esim_download_project_file()
             header("Cache-Control: public");
             header("Content-Description: File Transfer");
             header('Content-Type: application/zip');
-            header('Content-disposition: attachment; filename="' . $root_path . '/' . $workshop_project_file . '"');
+            header('Content-disposition: attachment; filename="' . $uploaded_project_file->project_file . '"');
             header('Content-Length: ' . filesize($root_path . '/' . $workshop_project_file));
             header("Content-Transfer-Encoding: binary");
             header('Expires: 0');
