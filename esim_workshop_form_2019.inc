@@ -551,7 +551,7 @@ function esim_workshop_step3_form_next_submit($form, &$form_state, $no_js_use = 
 	} //$form_step3_data
 	else
 	{
-		$query = "INSERT INTO {esim_workshop_2019_form_step3_feedback} (uid, step3_checkbox_status,step3_checkbox_status_1, data_relation,inserted_on) VALUES (:uid,:step3_checkbox_status,s:step3_checkbox_status_1, :data_relation,:inserted_on)";
+		$query = "INSERT INTO {esim_workshop_2019_form_step3_feedback} (uid, step3_checkbox_status,step3_checkbox_status_1, data_relation,inserted_on) VALUES (:uid,:step3_checkbox_status,:step3_checkbox_status_1, :data_relation,:inserted_on)";
 		$args = array(
 			":uid" => $user->uid,
 			":step3_checkbox_status" => $v['step3_field1_fieldset']['step3_checkbox_status'],
